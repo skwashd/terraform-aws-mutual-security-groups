@@ -1,0 +1,36 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - skwashd
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe the problem you are experiencing
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Steps to Reproduce
+      description: Provide a step by step guide to reproducing this problem
+      placeholder: |
+        * The first step you performed
+        * The second step
+        * You get the idea
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
