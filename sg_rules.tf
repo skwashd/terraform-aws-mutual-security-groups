@@ -1,23 +1,27 @@
-resource "aws_security_group_rule" "ingress" {
-  count = length(var.rules)
+resource "aws_vpc_security_group_ingress_rule" "this" {
+  for_each = var.rules
 
-  type                     = "ingress"
-  from_port                = var.rules[count.index].destination_port
-  to_port                  = local.to_port[count.index]
-  protocol                 = local.rules[count.index].protocol
-  description              = var.rules[count.index].description
-  source_security_group_id = var.rules[count.index].source_sg_id
-  security_group_id        = var.rules[count.index].target_sg_id
+  security_group_id            = each.value.target_sg_id
+  referenced_security_group_id = each.value.source_sg_id
+
+  description = each.value.description == "" ? each.value.description_source : each.value.description
+  from_port   = each.value.from_port
+  to_port     = each.value.to_port == null ? each.value.from_port : each.value.to_port
+  ip_protocol = each.value.protocol
+
+  tags = var.tags
 }
 
-resource "aws_security_group_rule" "egress" {
-  count = length(var.rules)
+resource "aws_vpc_security_group_egress_rule" "this" {
+  for_each = var.rules
 
-  type                     = "egress"
-  from_port                = var.rules[count.index].destination_port
-  to_port                  = local.to_port[count.index]
-  protocol                 = local.rules[count.index].protocol
-  description              = var.rules[count.index].description
-  source_security_group_id = var.rules[count.index].target_sg_id
-  security_group_id        = var.rules[count.index].source_sg_id
+  security_group_id            = each.value.source_sg_id
+  referenced_security_group_id = each.value.target_sg_id
+
+  description = each.value.description == "" ? each.value.description_target : each.value.description
+  from_port   = each.value.from_port
+  to_port     = each.value.to_port == null ? each.value.from_port : each.value.to_port
+  ip_protocol = each.value.protocol
+
+  tags = var.tags
 }
