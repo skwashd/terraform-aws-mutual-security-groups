@@ -1,6 +1,8 @@
 <!-- BEGIN_TF_DOCS -->
 # Terraform Mutual Security Groups Rules Module
 
+**This branch is unmaintained.**
+
 This module creates mutual AWS security group rules where matching ingress
 and egress to allow traffic between two security groups. This makes it easier
 to create security network configuration in your AWS environments.
@@ -24,7 +26,7 @@ to create security network configuration in your AWS environments.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_rules"></a> [rules](#input\_rules) | Rules for which traffic is permitted between two security groups | <pre>list(object({<br>    source_sg_id     = string<br>    target_sg_id     = string<br>    destination_port = string<br>    description      = string<br>    to_port          = optional(string)<br>    protocol         = optional(string)<br>  }))</pre> | n/a | yes |
+| <a name="input_rules"></a> [rules](#input\_rules) | Rules for which traffic is permitted between two security groups | <pre>list(object({<br/>    source_sg_id     = string<br/>    target_sg_id     = string<br/>    destination_port = string<br/>    description      = string<br/>    to_port          = optional(string)<br/>    protocol         = optional(string)<br/>  }))</pre> | n/a | yes |
 
 ## Outputs
 
