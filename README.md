@@ -11,8 +11,8 @@ module "security_group_rules" {
   source  = "skwashd/mutual-security-groups/aws"
   version = ">= 2.0.0, < 3.0.0"
 
-  rules = [
-    {
+  rules = {
+    lb-backend = {
       source_sg_id = "sg-903004f8"
       target_sg_id = "sg-33bb22aa"
 
@@ -21,7 +21,7 @@ module "security_group_rules" {
 
       description = "Allow QUIC/HTTP3 from NLB" # optional, but recommended
     },
-    {
+    backend-frontend = {
       source_sg_id = "sg-1a2b3c4d"
       target_sg_id = "sg-33bb22aa"
 
@@ -31,7 +31,11 @@ module "security_group_rules" {
       description_source = "to backend"
       description_target = "from frontend"
     }
-  ]
+  }
+
+  tags = {
+    environment = "example"
+  }
 }
 ```
 
