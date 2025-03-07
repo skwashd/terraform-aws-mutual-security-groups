@@ -11,10 +11,10 @@ To contribute bug fixes or features to this module:
 3. Make Sure running tflint, tfsec, terraform validate, etc.
 3. Rebase your branch.
 4. Put a related commit message with a full description
-    * Fixing Bug
-    * Adding Features
-    * Changing Functionality
-    * Updating versions
+    * Fixing <details of bug>
+    * Adding <description of feature>
+    * Changing <details of change>
+    * Updating <dependency> to <version>
 5. Sign off your commits (git commit -S)
 6. Open a Pull Request (PR).
 
